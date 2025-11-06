@@ -1,0 +1,24 @@
+[tasks.clean]
+command = "cargo"
+args = ["clean"]
+
+[tasks.web-build]
+command = "npm"
+args = ["--prefix", "web", "run", "build"]
+description = "Builds Vite frontend into web/dist"
+
+[tasks.backend-run]
+command = "cargo"
+args = ["run"]
+description = "Runs the Axum backend"
+
+[tasks.run]
+description = "Build web + run backend"
+dependencies = ["web-build", "backend-run"]
+
+[tasks.dev]
+description = "Hot reload mode (Vite dev + Axum watch)"
+script = [
+  "cargo watch -x 'run' &",
+  "npm --prefix web run dev"
+]
