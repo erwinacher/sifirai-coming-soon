@@ -1,0 +1,60 @@
+body {
+  background-color: #000;
+  color: #00e0ff;
+  font-family: "Fira Code", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin: 0.5rem 0;
+  color: #00ffff;
+  letter-spacing: 0.05em;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: #00a0aa;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  line-height: 1.4; /* ← add this line */
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  font-size: 0.7rem !important;
+  color: #008888;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+strong {
+  color: #00ffff;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.2ch;
+  height: 0.9em;
+  background-color: #00e0ff;
+  animation: blink 1s infinite;
+  margin-left: 0.2em;
+  margin-bottom: -0.1em;
+}
+
+@keyframes blink {
+  50% {
+    background-color: transparent;
+  }
+}

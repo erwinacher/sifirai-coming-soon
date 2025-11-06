@@ -6,7 +6,9 @@ use axum::{
 };
 //use serde::Deserialize;
 use tower_http::services::ServeDir;
-
+use tower_http::set_header::SetResponseHeaderLayer;
+use http::header::{CACHE_CONTROL, HeaderValue};
+use tower_layer::Layer;
 // #[derive(Debug, Deserialize)]
 // struct FrontMatter {
 //     title: String,
@@ -44,12 +46,24 @@ async fn index_handler() -> impl IntoResponse {
     Html(template.render().unwrap())
 }
 
+
 #[tokio::main]
 async fn main() {
+    let static_files = ServeDir::new("static")
+        .append_index_html_on_directories(false);
+
     let app = Router::new()
         .route("/", get(index_handler))
         // serve statuic files under /static/
-        .nest_service("/static", ServeDir::new("static"));
+        //.nest_service("/static", ServeDir::new("static"));
+        .nest_service(
+        "/static",
+        SetResponseHeaderLayer::if_not_present(
+            CACHE_CONTROL,
+            HeaderValue::from_static("public, max-age=31536000"),
+        )
+        .layer(static_files),
+    );
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3002")
         .await

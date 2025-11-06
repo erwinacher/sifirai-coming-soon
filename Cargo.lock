@@ -89,11 +89,13 @@ version = "0.1.0"
 dependencies = [
  "askama",
  "axum",
+ "http",
  "pulldown-cmark",
  "serde",
  "serde_yaml",
  "tokio",
  "tower-http",
+ "tower-layer",
  "walkdir",
 ]
 
