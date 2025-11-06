@@ -1,0 +1,75 @@
+# --- Core settings ---
+# Normalize line endings for all text files
+* text=auto eol=lf
+
+# --- Rust source ---
+*.rs text diff=rust linguist-language=Rust
+Cargo.toml text
+Cargo.lock text
+
+# --- TypeScript / JavaScript ---
+*.ts text diff=typescript linguist-language=TypeScript
+*.tsx text diff=typescript
+*.js text diff=javascript
+*.jsx text diff=javascript
+
+# --- Web / HTML / CSS / JSON ---
+*.html text diff=html
+*.htm text diff=html
+*.css text diff=css
+*.scss text diff=css
+*.json text diff=json
+*.yaml text diff=yaml
+*.yml text diff=yaml
+
+# --- Markdown / Docs ---
+*.md text diff=markdown
+*.mdx text diff=markdown
+*.txt text
+LICENSE text
+README* text
+
+# --- Configs ---
+*.toml text
+*.ini text
+*.conf text
+*.env text
+*.tsbuildinfo binary
+
+# --- Images / Assets ---
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg text
+*.ico binary
+*.webp binary
+*.avif binary
+
+# --- Fonts / Media ---
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.mp3 binary
+*.mp4 binary
+*.webm binary
+*.mov binary
+
+# --- Builds / Binaries ---
+*.wasm binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.o binary
+*.a binary
+*.out binary
+*.bin binary
+
+# --- GitHub linguist tuning ---
+# Treat everything under web/ as TypeScript for repo language stats
+web/** linguist-language=TypeScript
+
+# Ignore vendored code in language stats
+node_modules/** linguist-vendored
+target/** linguist-vendored
